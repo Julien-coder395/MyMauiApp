@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyMauiApp.Views.MainPage3"
+             Title="MainPage3">
+    
+    <StackLayout>
+        <Label Text="ROTATION"
+               BindingContext="{x:Reference slider}"
+               Rotation="{Binding Value}"
+               FontAttributes="Bold"
+               FontSize="18"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />
+        
+        <Slider x:Name="slider"
+                Maximum="360"
+                VerticalOptions="Center" />
+        
+        <Label BindingContext="{x:Reference slider}"
+               Text="{Binding Value, StringFormat='The angle is {0:F2} degrees'}"
+               FontAttributes="Bold"
+               FontSize="18"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />
+        
+        <!--Démontrer les 4 modes-->
+        <Entry BindingContext="{x:Reference slider}"
+               Text="{Binding Path=Value,Mode=Default}"
+               FontSize="18"
+               FontAttributes="Bold"/>
+        
+        <!--Exo 1-->
+        <Switch x:Name="switch"
+                VerticalOptions="Center"/>
+
+        <Label BindingContext="{x:Reference switch}"
+               Text="Afficher / masquer ce message grâce au switch"
+               FontAttributes="Bold"
+               FontSize="18"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               IsVisible="{Binding IsToggled, Mode=OneWay}"/>
+    </StackLayout>
+</ContentPage>
