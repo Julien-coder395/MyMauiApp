@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyMauiApp.Views.MainPage5"
+             xmlns:vm="clr-namespace:MyMauiApp.ViewModels"
+             Title="MainPage5">
+    
+    <ContentPage.BindingContext>
+        <vm:MainViewModel5/>
+    </ContentPage.BindingContext>
+    
+    <VerticalStackLayout>
+        <Label 
+            Text="{Binding Name}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            IsVisible="{Binding IsVisible}"/>
+
+        <Button Text="Show Hide Message"
+                Command="{Binding ShowHideMessageCommand}"
+                Margin="5, 20, 5, 0"/>
+    </VerticalStackLayout>
+</ContentPage>

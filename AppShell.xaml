@@ -16,7 +16,7 @@
     <!--Commenter/Décommenter le code ci-dessous pour masquer/afficher les vues se trouvant dans le dossier "Views". -->
     <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate views:MainPage2}" 
+        ContentTemplate="{DataTemplate views:LoginPage}" 
         Route="MainPage" />
     <!--Il faut aussi changer le numéro MainPage2, MainPage3-->
 
