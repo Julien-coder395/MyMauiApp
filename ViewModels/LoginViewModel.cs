@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using MyMauiApp.Models;
 using MyMauiApp.Repositories;
+using MyMauiApp.Tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace MyMauiApp.ViewModels
 		public LoginViewModel()
 		{
 			LoginCommand = new RelayCommand(async () => await Login());
-			if (App.HasLogin)
+			if (Helper.HasLogin)
 			{
 
 			}
@@ -45,9 +46,10 @@ namespace MyMauiApp.ViewModels
 			//{
 			//	// Sauvegarder dans SQLite.
 			//}
-			OnEncrypt("pa");
+			OnEncrypt("password");
 		}
 
+		// Méthode d'encryption pour transmettre le mot de passe crypté.
 		public void OnEncrypt(string DecryptedText)
 		{
 			try
@@ -58,13 +60,11 @@ namespace MyMauiApp.ViewModels
 					var encryptedBytes = new byte[0];
 					// Get the password bytes.
 					var passwordBytes = Encoding.UTF8.GetBytes(
-						"password"
-						//_appSettings.Value.Keys.Password
+						DecryptedText
 						);
 					// Get the salt bytes.
 					var saltBytes = Encoding.UTF8.GetBytes(
 						"1256"
-						//_appSettings.Value.Keys.Salt
 						);
 					// Create the algorithm
 					using (var alg = Aes.Create())
@@ -77,44 +77,38 @@ namespace MyMauiApp.ViewModels
 						var key = new Rfc2898DeriveBytes(
 							passwordBytes,
 							saltBytes,
-							7
-							//(int)_appSettings.Value.Keys.Iterations
+							7 // Nb itérations
+				
 							);
 #pragma warning restore SYSLIB0041 // Le type ou le membre est obsolète
 								  // Generate the key and salt with proper lengths.
 						alg.Key = key.GetBytes(alg.KeySize / 8);
 						alg.IV = key.GetBytes(alg.BlockSize / 8);
 						// Create the encryptor.
-						using (var enc = alg.CreateEncryptor(
+						using var enc = alg.CreateEncryptor(
 							alg.Key,
 							alg.IV
+							);
+						// Create a temporary stream.
+						using var stream = new MemoryStream();
+						// Create a cryptographic stream.
+						using var cryptoStream = new CryptoStream(
+							stream,
+							enc,
+							CryptoStreamMode.Write
+							);
+						// Create a writer
+						using (var writer = new StreamWriter(
+							cryptoStream
 							))
 						{
-							// Create a temporary stream.
-							using (var stream = new MemoryStream())
-							{
-								// Create a cryptographic stream.
-								using (var cryptoStream = new CryptoStream(
-									stream,
-									enc,
-									CryptoStreamMode.Write
-									))
-								{
-									// Create a writer
-									using (var writer = new StreamWriter(
-										cryptoStream
-										))
-									{
-										// Write the bytes.
-										writer.Write(
-											DecryptedText
-											);
-									}
-									// Get the bytes.
-									encryptedBytes = stream.ToArray();
-								}
-							}
+							// Write the bytes.
+							writer.Write(
+								DecryptedText
+								);
 						}
+						// Get the bytes.
+						encryptedBytes = stream.ToArray();
 					}
 					// Convert the bytes back to an encoded string.
 					var encryptedValue = Convert.ToBase64String(
@@ -129,9 +123,8 @@ namespace MyMauiApp.ViewModels
 					//EncryptedText = "";
 				}
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
-				// Prompt the user.
 				
 			}
 		}

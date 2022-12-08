@@ -29,7 +29,7 @@ namespace MyMauiApp.Repositories
 
 		public async Task<User> GetUserAsync()
 		{
-			var user = await Database.Table<User>().ToListAsync();
+			var user = await Database.Table<User>().FirstOrDefaultAsync();
 			return user;
 		}
 

@@ -1,20 +1,12 @@
-﻿using Org.Apache.Http.Authentication;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
-using Xamarin.Google.Crypto.Tink.Shaded.Protobuf;
-using static Android.Content.ClipData;
 
 namespace MyMauiApp.Services
 {
 	public class LoginService
 	{
 		private HttpClient httpClient = new();
-
-		string url = "https://localhost:7117";
+		readonly string url = "https://localhost:7117";
 
 		public LoginService()
 		{
