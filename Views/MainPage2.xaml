@@ -27,5 +27,6 @@
                 Margin="5, 10, 5, 0"
                 BorderColor="Azure"
                 CornerRadius="5"/>
+        <Image x:Name="image"/>
     </VerticalStackLayout>
 </ContentPage>

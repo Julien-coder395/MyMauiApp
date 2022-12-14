@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -10,9 +11,9 @@ using System.Windows.Input;
 namespace MyMauiApp.ViewModels
 {
 	// La View correspondante est MainPage2.
-	internal class MainViewModel2 : BaseViewModel
+	internal class MainViewModel2 : ObservableObject
 	{
-		// Avec une List, lorsqu'on y ajoute un élément, le rafraîchissement de la vue ne s'effectue pas.
+		//Avec une List, lorsqu'on y ajoute un élément, le rafraîchissement de la vue ne s'effectue pas.
 		//private List<string> dataStrings = new();
 		//public List<string> DataStrings
 		//{
@@ -32,7 +33,7 @@ namespace MyMauiApp.ViewModels
 			set
 			{
 				dataStrings = value;
-				OnPropertyChanged(); // Méthode de la classe mère
+				//OnPropertyChanged(); // Méthode de la classe mère
 			}
 		}
 
@@ -43,7 +44,7 @@ namespace MyMauiApp.ViewModels
 			set
 			{
 				dico = value;
-				OnPropertyChanged(); // Méthode de la classe mère
+				//OnPropertyChanged(); // Méthode de la classe mère
 			}
 		}
 
@@ -54,7 +55,7 @@ namespace MyMauiApp.ViewModels
 			set
 			{
 				inputText = value;
-				OnPropertyChanged(); // Méthode de la classe mère
+				//OnPropertyChanged(); // Méthode de la classe mère
 			}
 		}
 

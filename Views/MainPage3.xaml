@@ -41,5 +41,39 @@
                HorizontalOptions="Center"
                VerticalOptions="Center"
                IsVisible="{Binding IsToggled, Mode=OneWay}"/>
+
+        <!--Exo 2--><!--
+        <Picker x:Name="picker"
+                Title="Select a monkey"
+                Margin="30">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Baboon</x:String>
+                    <x:String>Capuchin Monkey</x:String>
+                    <x:String>Blue Monkey</x:String>
+                    <x:String>Squirrel Monkey</x:String>
+                    <x:String>Golden Lion Tamarin</x:String>
+                    <x:String>Howler Monkey</x:String>
+                    <x:String>Japanese Macaque</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+
+
+        <Label BindingContext="{x:Reference picker}" 
+               Text="{Binding SelectedItem, StringFormat='Vous avez sélectionné {0:F0}'}"
+               Margin="5"/>
+
+        --><!--Exo 3--><!--
+        <Button BindingContext="{x:Reference slider}"
+                CornerRadius="{Binding Value}"
+                Text="Les bords peuvent s'arrondir"
+                HorizontalOptions="Center"
+                VerticalOptions="Center" />
+
+        --><!--Exo 4--><!--
+        <ActivityIndicator Color="Red"
+                           IsRunning="{Binding IsToggled}"
+                           BindingContext="{x:Reference switch}" />-->
     </StackLayout>
 </ContentPage>

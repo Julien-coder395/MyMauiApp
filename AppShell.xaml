@@ -6,7 +6,7 @@
     xmlns:local="clr-namespace:MyMauiApp"
     xmlns:views="clr-namespace:MyMauiApp.Views"
     Shell.FlyoutBehavior="Disabled">
-
+    
     <!--Commenter/Décommenter le code ci-dessous pour masquer/afficher la MainPage.-->
     <!--<ShellContent
         Title="Home"
@@ -16,7 +16,7 @@
     <!--Commenter/Décommenter le code ci-dessous pour masquer/afficher les vues se trouvant dans le dossier "Views". -->
     <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate views:LoginPage}" 
+        ContentTemplate="{DataTemplate views:LogBookView}" 
         Route="MainPage" />
     <!--Il faut aussi changer le numéro MainPage2, MainPage3-->
 

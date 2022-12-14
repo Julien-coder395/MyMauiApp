@@ -1,13 +1,7 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using SQLite;
-
-namespace MyMauiApp.Models
+﻿namespace MyMauiApp.Models
 {
-    public class User : ObservableObject
-    {
-		[PrimaryKey]
-		public int Id { get; set; }
-        
+    public class UserModel : BaseModel
+    {        
         private string login;
         public string Login
         {

@@ -6,15 +6,6 @@
              Title="LoginPage"
              xmlns:views="clr-namespace:MyMauiApp.Views">
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Style TargetType="Entry" x:Key="EntryStyle">
-                <Setter Property="Margin" Value="5"/>
-                <Setter Property="FontSize" Value="Medium"/>
-            </Style>
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
     <ContentPage.BindingContext>
         <viewModels:LoginViewModel />
     </ContentPage.BindingContext>
@@ -24,23 +15,20 @@
                Text="{Binding User.Login}"
                Margin="5"
                FontSize="Medium"
-               Style="{StaticResource EntryStyle}"/>
+               Style="{StaticResource GlobalEntryStyle}"/>
         
         <Entry Placeholder="Password"
                IsPassword="True"
                Text="{Binding User.Password}"
-               Style="{StaticResource EntryStyle}"
+               Style="{StaticResource GlobalEntryStyle}"
                />
 
-        <Button Command="{Binding LoginCommand}"
-                Text="Se connecter"
+        <Button Command="{Binding SaveCommand}"
+                Text="Sauvegarder l'utisateur"
                 BorderWidth="1"
                 BorderColor="DarkViolet"
                 Margin="10"
                 CornerRadius="10"
-                FontSize="Medium"
-                x:Name="btn_bottom_right"/>
-
-        <views:ComposantTest/>
+                FontSize="Medium"/>
     </VerticalStackLayout>
 </ContentPage>

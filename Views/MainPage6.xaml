@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyMauiApp.Views.MainPage6"
+             Title="MainPage6">
+    
+    <VerticalStackLayout>
+        <ListView ItemsSource="{Binding Users}"
+                  Margin="4"
+                  HasUnevenRows="True"
+                  SeparatorColor="Red">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Margin="4">
+                            <Label Text="{Binding Login}"
+                                   TextColor="Blue"
+                                   Margin="4"
+                                   Style="{StaticResource GlobalLabelStyle}"></Label>
+                            <Label Text="{Binding Password}"
+                                   TextColor="Blue"
+                                   Margin="4"
+                                   Style="{StaticResource GlobalLabelStyle}"></Label>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button Command="{Binding GetUsersCommand}"
+                Style="{StaticResource GlobalButtonStyle}"
+                Text="Cliquer pour ajouter des utilisateurs"/>
+    </VerticalStackLayout>
+</ContentPage>

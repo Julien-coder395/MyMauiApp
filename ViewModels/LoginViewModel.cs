@@ -14,39 +14,21 @@ namespace MyMauiApp.ViewModels
 {
 	public class LoginViewModel : ObservableObject
 	{
-		public User User { get; set; } = new User();
+		public UserModel User { get; set; } = new UserModel();
 
 		public UserRepository UserRepository { get; set; } = new();
 
-		public RelayCommand LoginCommand { get; set; }
+		public RelayCommand SaveCommand { get; set; }
 
 		public LoginViewModel()
 		{
-			LoginCommand = new RelayCommand(async () => await Login());
-			if (Helper.HasLogin)
-			{
-
-			}
-
+			SaveCommand = new RelayCommand(async () => await SaveUser());
 		}
 
-		public async Task Login()
+		public async Task SaveUser()
 		{
 			System.Diagnostics.Debug.WriteLine($"Login : {User.Login} / Password : {User.Password}");
 			await UserRepository.SaveUserAsync(User);
-			
-			// Secure storage
-			//try
-			//{
-			//	// Login process retur a JWT.
-			//	await SecureStorage.Default.SetAsync("oauth_token", "secret-oauth-token-value");
-			//	var token = await SecureStorage.Default.GetAsync("oauth_token");
-			//}
-			//catch(Exception)
-			//{
-			//	// Sauvegarder dans SQLite.
-			//}
-			OnEncrypt("password");
 		}
 
 		// Méthode d'encryption pour transmettre le mot de passe crypté.

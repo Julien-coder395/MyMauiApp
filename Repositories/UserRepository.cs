@@ -9,31 +9,19 @@ using System.Threading.Tasks;
 
 namespace MyMauiApp.Repositories
 {
-    public class UserRepository
-	{
-		SQLiteAsyncConnection Database;
-
+    public class UserRepository : BaseRepository<UserModel>
+	{		
 		public UserRepository()
 		{
-			Init().GetAwaiter();
 		}
 
-		async Task Init()
+		public async Task<UserModel> GetUserAsync()
 		{
-			if (Database is not null)
-				return;
-
-			Database = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
-			_ = await Database.CreateTableAsync<User>();
-		}
-
-		public async Task<User> GetUserAsync()
-		{
-			var user = await Database.Table<User>().FirstOrDefaultAsync();
+			var user = await Database.Table<UserModel>().FirstOrDefaultAsync();
 			return user;
 		}
 
-		public async Task<int> SaveUserAsync(User user)
+		public async Task<int> SaveUserAsync(UserModel user)
 		{
 			var userSaved = GetUserAsync();
 			if(userSaved != null)

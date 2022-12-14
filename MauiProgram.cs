@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using MyMauiApp.Repositories;
+using MyMauiApp.ViewModels;
 
 namespace MyMauiApp;
 

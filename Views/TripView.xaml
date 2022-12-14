@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyMauiApp.Views.TripView"
+             xmlns:vm="clr-namespace:MyMauiApp.ViewModels"
+             Title="Save a trip !">
+
+    <ContentPage.BindingContext>
+        <vm:TripViewModel/>
+    </ContentPage.BindingContext>
+  
+    <VerticalStackLayout Spacing="10">
+        
+        <Entry Placeholder="Localisation"
+               Text="{Binding Trip.Location}"/>
+        
+        <DatePicker Date="{Binding Trip.Date}"/>
+        
+        <Editor Margin="5" Text="{Binding Trip.ObservedSpecies}"
+                Placeholder="Renseigner ici les espèces rencontrées lors de votre sortie !"/>
+
+        <Button Command="{Binding SaveCommand}"
+                Text="Sauvegarder"
+                Margin="10"/>
+
+        <Button Command="{Binding GetListCommand}"
+                Text="Obtenir la liste"
+                Margin="10"/>
+        
+    </VerticalStackLayout>
+</ContentPage>

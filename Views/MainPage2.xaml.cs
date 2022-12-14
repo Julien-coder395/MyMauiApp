@@ -11,5 +11,7 @@ public partial class MainPage2 : ContentPage
 
 		MainViewModel2 mainViewModel2 = new();
 		BindingContext = mainViewModel2;
+
+		image.Source = "Login/csharp.png";
 	}
 }

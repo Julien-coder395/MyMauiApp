@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyMauiApp.Views.LogBookView"
+             Title="LogBookView"
+             xmlns:components="clr-namespace:MyMauiApp.Components">
+
+    <Grid RowDefinitions="*, *, *">
+        <components:Header Grid.Row="0"/>
+        
+        <ContentView Grid.Row="1" x:Name="Body"/>
+        
+        <components:Footer Grid.Row="2"/>
+    </Grid>
+    
+</ContentPage>
