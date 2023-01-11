@@ -15,5 +15,11 @@
 			get => password;
 			set => SetProperty(ref password, value);
 		}
+
+        //public void test()
+        //{
+        //    var tripmodel = new TripModel(DateTime.Now, "Porto Vecchio");
+        //    //tripmodel.Id;
+        //}
 	}
 }

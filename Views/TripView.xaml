@@ -24,8 +24,31 @@
                 Margin="10"/>
 
         <Button Command="{Binding GetListCommand}"
-                Text="Obtenir la liste"
+                Text="Mettre à jour la liste"
                 Margin="10"/>
-        
+
+        <Button Command="{Binding AddTestDataCommand}"
+                Text="Ajouter des données de test"
+                Margin="10"/>
+
+        <ListView ItemsSource="{Binding Trips}" HasUnevenRows="True" ItemSelected="ListView_ItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Margin="4">
+                            <Label Text="{Binding Date}"
+                                   TextColor="Blue"
+                                   Margin="4"></Label>
+                            <Label Text="{Binding Location}"
+                                   TextColor="Blue"
+                                   Margin="4"></Label>
+                            <Label Text="{Binding ObservedSpecies}"
+                                   TextColor="Blue"
+                                   Margin="4"></Label>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </VerticalStackLayout>
 </ContentPage>

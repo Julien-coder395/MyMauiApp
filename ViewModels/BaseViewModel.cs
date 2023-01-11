@@ -32,7 +32,11 @@ namespace MyMauiApp.ViewModels
 
 		public ICommand SaveCommand { get; set; }
 
+		public ICommand DeleteCommand { get; set; }
+
 		public ICommand GetListCommand { get; set; }
+
+		public ICommand AddTestDataCommand { get; set; }
 
 		public BaseViewModel(TRepository repo)
 		{
