@@ -15,7 +15,7 @@
                 Placeholder="Renseigner ici les espèces rencontrées lors de votre sortie !"/>
 
         <Entry Placeholder="Nom du spot"
-               Text="{Binding Trip.DiveSpotModel.DiveSpotName}"/>
+               Text="{Binding Trip.DiveSpotModel.Name}"/>
 
         <Button Command="{Binding SaveCommand}"
                 Text="Sauvegarder"
@@ -43,7 +43,7 @@
                             <Label Text="{Binding ObservedSpecies}"
                                    TextColor="Blue"
                                    Margin="4"></Label>
-                            <Label Text="{Binding DiveSpotModel.DiveSpotName}"
+                            <Label Text="{Binding DiveSpotModel.Name}"
                                    TextColor="Blue"
                                    Margin="4"></Label>
                         </StackLayout>

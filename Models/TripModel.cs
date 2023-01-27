@@ -3,48 +3,24 @@ using SQLite;
 
 namespace MyMauiApp.Models
 {
-	public class TripModel : BaseModel
+    public partial class TripModel : BaseModel
 	{
-		private DateTime date = DateTime.Now;
-		public DateTime Date
-		{
-			get => date;
-			set => SetProperty(ref date, value);
-		}
+        [ObservableProperty]
+        private DateTime date = DateTime.Now;
 
-		//[ObservableProperty]
-		//DateTime date;
+        [ObservableProperty]
+        private int profondeur;
 
-		private int profondeur;
-		public int Profondeur
-		{
-			get => profondeur;
-			set => SetProperty(ref profondeur, value);
-		}
+        [ObservableProperty]
+        private string location = string.Empty;
 
-		private string location = string.Empty;
-		public string Location
-		{
-			get => location;
-			set => SetProperty(ref location, value);
-		}
-
-		private string observedSpecies = string.Empty;
-		public string ObservedSpecies
-		{
-			get => observedSpecies;
-			set => SetProperty(ref observedSpecies, value);
-		}
+        [ObservableProperty]
+        private string observedSpecies = string.Empty;
 
 		// Id du DiveSpotModel associé à ce TripModel.
 		public int DiveSpotId { get; set; }
 
-		private DiveSpotModel diveSpotModel = new();
-        [Ignore] // N'est pas sauvegardé par SQLite
-        public DiveSpotModel DiveSpotModel
-		{
-			get => diveSpotModel;
-			set => SetProperty(ref diveSpotModel, value);
-		}
-	}
+        [Ignore]
+        public DiveSpotModel DiveSpotModel { get; set; } = new();
+    }
 }

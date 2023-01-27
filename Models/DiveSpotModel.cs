@@ -1,40 +1,20 @@
-﻿namespace MyMauiApp.Models
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+
+namespace MyMauiApp.Models
 {
-    public class DiveSpotModel : BaseModel
+    public partial class DiveSpotModel : BaseModel
     {
-        //public int DiveSpotModelID { get; set; }
+        [ObservableProperty]
+        private string name = string.Empty;
 
-        // Propriété
-        private string diveSpotName = string.Empty;
-        public string DiveSpotName
-        {
-            get => diveSpotName;
-            set => SetProperty(ref diveSpotName, value);
-        }
-
-        // Propriété
         // Point GPS
-        private string diveSpotLocalisation = string.Empty;
-        public string DiveSpotLocalisation
-        {
-            get => diveSpotLocalisation;
-            set => SetProperty(ref diveSpotLocalisation, value);
-        }
+        [ObservableProperty]
+        private string gpsLocalisation = string.Empty;
 
-        // Propriété
-        private string diveSpotPays = string.Empty;
-        public string DiveSpotPays
-        {
-            get => diveSpotPays;
-            set => SetProperty(ref diveSpotPays, value);
-        }
+        [ObservableProperty]
+        private string pays = string.Empty;
 
-        // Propriété
+        [ObservableProperty]
         private string diveSpotRegion = string.Empty;
-        public string DiveSpotRegion
-        {
-            get => diveSpotRegion;
-            set => SetProperty(ref diveSpotRegion, value);
-        }
     }
 }
