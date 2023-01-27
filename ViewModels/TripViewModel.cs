@@ -16,19 +16,18 @@ namespace MyMauiApp.ViewModels
 			set => SetProperty(ref trips, value);
 		}
 
-		public TripViewModel() : base(new TripRepository())
-		{
-			// Ajout des données en dur (n'est plus utilisé)
-			//var trip1 = new TripModel() { Date = DateTime.Now, Location = "Corse", ObservedSpecies = "Tortue" };
-			//Trips.Add(trip1);
-			//Trips.Add(new TripModel() { Date = DateTime.Now, Location = "Cote atlantique", ObservedSpecies = "Baleine" });
-			//Trips.Add(new TripModel() { Date = DateTime.Now, Location = "Metz", ObservedSpecies = "Requin" });
+		private DiveContext DiveContext { get; set; }
+
+		public TripViewModel(DiveContext context, TripRepository tripRepository) : base(tripRepository)
+		{	
+			DiveContext = context;
 
 			SaveCommand = new RelayCommand(async () => await Save());
 			GetListCommand = new RelayCommand(async () => await GetList());
 			DeleteCommand = new RelayCommand<TripModel>(async(trip) => await Delete(trip));
 			AddTestDataCommand = new RelayCommand(Repository.SeedData);
-			GetList().GetAwaiter(); 
+			AddDataCommand = new RelayCommand(async () => await AddDataAsync());
+			GetList().GetAwaiter();
 		}
 
 		private async Task Save()
@@ -55,5 +54,19 @@ namespace MyMauiApp.ViewModels
 			await Repository.Delete(trip);
 			await GetList();
 		}
+
+		private async Task AddDataAsync()
+		{
+			var DiveSpot = new DiveSpotModel
+			{
+				DiveSpotName = "Mon spot",
+				DiveSpotLocalisation = "Ajaccio",
+				DiveSpotPays = "France",
+				DiveSpotRegion = "Corse"
+			};
+
+            DiveContext.Spots.Add(DiveSpot);
+			await DiveContext.SaveChangesAsync();
+        }
 	}
 }

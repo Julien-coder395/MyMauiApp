@@ -1,4 +1,6 @@
+using Microsoft.Extensions.DependencyInjection;
 using MyMauiApp.Models;
+using MyMauiApp.Repositories;
 using MyMauiApp.ViewModels;
 
 namespace MyMauiApp.Views;
@@ -10,8 +12,9 @@ public partial class TripView : ContentPage
 	public TripView()
 	{
 		InitializeComponent();
-		TripViewModel = BindingContext as TripViewModel;
-	}
+        TripViewModel = ServiceHelper.GetService<TripViewModel>();
+		BindingContext = TripViewModel;
+    }
 
 	private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
 	{

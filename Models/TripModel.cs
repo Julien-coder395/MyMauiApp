@@ -1,26 +1,10 @@
-﻿using Java.Util;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using SQLite;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyMauiApp.Models
 {
 	public class TripModel : BaseModel
 	{
-		// 3 niveaux de protection : private / protected / public
-
-		// Constructeur
-		//public TripModel(DateTime date, string location)
-		//{
-		//	Date = date;
-		//	Location = location;
-		//	Sumarize();
-		//}
-
 		private DateTime date = DateTime.Now;
 		public DateTime Date
 		{
@@ -28,15 +12,15 @@ namespace MyMauiApp.Models
 			set => SetProperty(ref date, value);
 		}
 
-		//public DateTime GetDate()
-		//{
-		//	return date;
-		//}
+		//[ObservableProperty]
+		//DateTime date;
 
-		//public void SetDate(DateTime date)
-		//{
-		//	this.date = date;
-		//}
+		private int profondeur;
+		public int Profondeur
+		{
+			get => profondeur;
+			set => SetProperty(ref profondeur, value);
+		}
 
 		private string location = string.Empty;
 		public string Location
@@ -52,14 +36,15 @@ namespace MyMauiApp.Models
 			set => SetProperty(ref observedSpecies, value);
 		}
 
-		public string Sumarize()
-		{
-			return $"Le trip a lieu: {Location} + {Id}";
-		}
+		// Id du DiveSpotModel associé à ce TripModel.
+		public int DiveSpotId { get; set; }
 
-		public void Add2jours()
+		private DiveSpotModel diveSpotModel = new();
+        [Ignore] // N'est pas sauvegardé par SQLite
+        public DiveSpotModel DiveSpotModel
 		{
-			Date.AddDays(2);
+			get => diveSpotModel;
+			set => SetProperty(ref diveSpotModel, value);
 		}
 	}
 }

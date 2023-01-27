@@ -13,17 +13,6 @@ using System.Windows.Input;
 
 namespace MyMauiApp.ViewModels
 {
-	// Classe de base permettant d'utiliser MVVM.
-	//internal class BaseViewModel : INotifyPropertyChanged
-	//{
-	//	public event PropertyChangedEventHandler PropertyChanged;
-
-	//	public void OnPropertyChanged([CallerMemberName] string name = "") =>
-	//		PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-
-	//	public string Login { get; set; }
-	//}
-
 	public class BaseViewModel<TRepository, TModel> : ObservableObject 
 		where TRepository : BaseRepository<TModel>, new()
 		where TModel : BaseModel, new()	
@@ -37,6 +26,8 @@ namespace MyMauiApp.ViewModels
 		public ICommand GetListCommand { get; set; }
 
 		public ICommand AddTestDataCommand { get; set; }
+
+		public ICommand AddDataCommand { get; set; }
 
 		public BaseViewModel(TRepository repo)
 		{
