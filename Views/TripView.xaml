@@ -29,10 +29,6 @@
                 Text="Ajouter des données de test"
                 Margin="10"/>-->
 
-        <Button Command="{Binding AddDataCommand}"
-                Text="Ajouter des données via EF"
-                Margin="10"/>
-
         <ListView ItemsSource="{Binding Trips}" HasUnevenRows="True" ItemSelected="ListView_ItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>

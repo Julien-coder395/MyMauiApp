@@ -16,17 +16,12 @@ namespace MyMauiApp.ViewModels
 			set => SetProperty(ref trips, value);
 		}
 
-		private DiveContext DiveContext { get; set; }
-
-		public TripViewModel(DiveContext context, TripRepository tripRepository) : base(tripRepository)
+		public TripViewModel(TripRepository tripRepository) : base(tripRepository)
 		{	
-			DiveContext = context;
-
 			SaveCommand = new RelayCommand(async () => await Save());
 			GetListCommand = new RelayCommand(async () => await GetList());
 			DeleteCommand = new RelayCommand<TripModel>(async(trip) => await Delete(trip));
 			AddTestDataCommand = new RelayCommand(Repository.SeedData);
-			AddDataCommand = new RelayCommand(async () => await AddDataAsync());
 			GetList().GetAwaiter();
 		}
 
@@ -54,19 +49,5 @@ namespace MyMauiApp.ViewModels
 			await Repository.Delete(trip);
 			await GetList();
 		}
-
-		private async Task AddDataAsync()
-		{
-			var DiveSpot = new DiveSpotModel
-			{
-				DiveSpotName = "Mon spot",
-				DiveSpotLocalisation = "Ajaccio",
-				DiveSpotPays = "France",
-				DiveSpotRegion = "Corse"
-			};
-
-            DiveContext.Spots.Add(DiveSpot);
-			await DiveContext.SaveChangesAsync();
-        }
 	}
 }

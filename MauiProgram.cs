@@ -13,7 +13,6 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
-            .RegisterAppServices()
             .RegisterViewModels()
 
 			.RegisterRepositories()
@@ -42,10 +41,4 @@ public static class MauiProgram
 		mauiAppBuilder.Services.AddTransient<TripRepository>();
 		return mauiAppBuilder;
 	}
-
-    public static MauiAppBuilder RegisterAppServices(this MauiAppBuilder mauiAppBuilder)
-    {
-        mauiAppBuilder.Services.AddSingleton<DiveContext>();
-		return mauiAppBuilder;
-    }
 }

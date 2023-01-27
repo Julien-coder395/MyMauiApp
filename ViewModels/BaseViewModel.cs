@@ -27,8 +27,6 @@ namespace MyMauiApp.ViewModels
 
 		public ICommand AddTestDataCommand { get; set; }
 
-		public ICommand AddDataCommand { get; set; }
-
 		public BaseViewModel(TRepository repo)
 		{
 			Repository = repo;
