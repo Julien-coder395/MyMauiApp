@@ -6,28 +6,27 @@
              Title="Save a trip !">
 
     <VerticalStackLayout Spacing="10">
-        <Entry Placeholder="Localisation"
+        <Entry 
+               Placeholder="Localisation"
                Text="{Binding Trip.Location}"/>
-        
+
         <DatePicker Date="{Binding Trip.Date}"/>
-        
-        <Editor Margin="5" Text="{Binding Trip.ObservedSpecies}"
+
+        <Editor 
+                Margin="5" Text="{Binding Trip.ObservedSpecies}"
                 Placeholder="Renseigner ici les espèces rencontrées lors de votre sortie !"/>
 
         <Entry Placeholder="Nom du spot"
                Text="{Binding Trip.DiveSpotModel.Name}"/>
 
-        <Button Command="{Binding SaveCommand}"
+        <Button 
+                Command="{Binding SaveCommand}"
                 Text="Sauvegarder"
                 Margin="10"/>
 
         <Button Command="{Binding GetListCommand}"
                 Text="Mettre à jour la liste"
                 Margin="10"/>
-
-        <!--<Button Command="{Binding AddTestDataCommand}"
-                Text="Ajouter des données de test"
-                Margin="10"/>-->
 
         <ListView ItemsSource="{Binding Trips}" HasUnevenRows="True" ItemSelected="ListView_ItemSelected">
             <ListView.ItemTemplate>
