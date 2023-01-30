@@ -28,24 +28,37 @@
                 Text="Mettre à jour la liste"
                 Margin="10"/>
 
-        <ListView ItemsSource="{Binding Trips}" HasUnevenRows="True" ItemSelected="ListView_ItemSelected">
+        <ListView x:Name="ListViewTrips"
+                  ItemsSource="{Binding Trips}" HasUnevenRows="True" ItemTapped="ListViewTrips_ItemTapped"
+                  >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Margin="4">
-                            <Label Text="{Binding Date}"
+                        <Grid ColumnDefinitions="*, .2*">
+                            <StackLayout 
+                                Grid.Column="0"
+                                Margin="4">
+                                <Label Text="{Binding Date, StringFormat='{}{0:dd/MM/yyyy}'}"
                                    TextColor="Blue"
                                    Margin="4"></Label>
-                            <Label Text="{Binding Location}"
+                                <Label Text="{Binding Location}"
                                    TextColor="Blue"
                                    Margin="4"></Label>
-                            <Label Text="{Binding ObservedSpecies}"
+                                <Label Text="{Binding ObservedSpecies}"
                                    TextColor="Blue"
                                    Margin="4"></Label>
-                            <Label Text="{Binding DiveSpotModel.Name}"
+                                <Label Text="{Binding DiveSpotModel.Name}"
                                    TextColor="Blue"
                                    Margin="4"></Label>
-                        </StackLayout>
+                            </StackLayout>
+                            <Button Text="X"
+                                    Margin="10"
+                                    Grid.Column="1"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:TripViewModel}}, Path=DeleteCommand}"
+                                    CommandParameter="{Binding .}">
+                            </Button>
+                        </Grid>
+                        
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>

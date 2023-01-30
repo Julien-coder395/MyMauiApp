@@ -16,9 +16,20 @@ public partial class TripView : ContentPage
 		BindingContext = TripViewModel;
     }
 
-	private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-	{
-		var item = e.SelectedItem as TripModel;
-		TripViewModel.DeleteCommand.Execute(item);
-	}
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        ListViewTrips.SelectedItem = null;
+    }
+
+
+    private async void ListViewTrips_ItemTapped(object sender, ItemTappedEventArgs e)
+    {
+        if(e.Item is not null)
+        {
+            TripViewModel.Trip = e.Item as TripModel;
+            TripViewDetails detailPage = new() { BindingContext = TripViewModel };
+            await Navigation.PushAsync(detailPage);
+        }    
+    }
 }
