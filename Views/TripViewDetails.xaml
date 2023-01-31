@@ -7,19 +7,19 @@
     <VerticalStackLayout Spacing="10">
         <Entry 
                Placeholder="Localisation"
-               Text="{Binding Trip.Location}"/>
+               Text="{Binding TripDetails.Location}"/>
 
-        <DatePicker Date="{Binding Trip.Date}"/>
+        <DatePicker Date="{Binding TripDetails.Date}"/>
 
         <Editor 
-                Margin="5" Text="{Binding Trip.ObservedSpecies}"
+                Margin="5" Text="{Binding TripDetails.ObservedSpecies}"
                 Placeholder="Renseigner ici les espèces rencontrées lors de votre sortie !"/>
 
         <Entry Placeholder="Nom du spot"
-               Text="{Binding Trip.DiveSpotModel.Name}"/>
+               Text="{Binding TripDetails.DiveSpotModel.Name}"/>
 
         <Button 
-                Command="{Binding SaveCommand}"
+                Command="{Binding UpdateTripDetailsCommand}"
                 Text="Sauvegarder"
                 Margin="10"
                 Clicked="Button_Clicked"/>

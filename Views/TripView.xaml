@@ -5,63 +5,65 @@
              xmlns:vm="clr-namespace:MyMauiApp.ViewModels"
              Title="Save a trip !">
 
-    <VerticalStackLayout Spacing="10">
-        <Entry 
+    <ScrollView>
+        <VerticalStackLayout Spacing="10">
+            <Entry 
                Placeholder="Localisation"
                Text="{Binding Trip.Location}"/>
 
-        <DatePicker Date="{Binding Trip.Date}"/>
+            <DatePicker Date="{Binding Trip.Date}"/>
 
-        <Editor 
+            <Editor 
                 Margin="5" Text="{Binding Trip.ObservedSpecies}"
                 Placeholder="Renseigner ici les espèces rencontrées lors de votre sortie !"/>
 
-        <Entry Placeholder="Nom du spot"
+            <Entry Placeholder="Nom du spot"
                Text="{Binding Trip.DiveSpotModel.Name}"/>
 
-        <Button 
+            <Button 
                 Command="{Binding SaveCommand}"
                 Text="Sauvegarder"
                 Margin="10"/>
 
-        <Button Command="{Binding GetListCommand}"
+            <Button Command="{Binding GetListCommand}"
                 Text="Mettre à jour la liste"
                 Margin="10"/>
 
-        <ListView x:Name="ListViewTrips"
+            <ListView x:Name="ListViewTrips"
                   ItemsSource="{Binding Trips}" HasUnevenRows="True" ItemTapped="ListViewTrips_ItemTapped"
                   >
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid ColumnDefinitions="*, .2*">
-                            <StackLayout 
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid ColumnDefinitions="*, .2*">
+                                <StackLayout 
                                 Grid.Column="0"
                                 Margin="4">
-                                <Label Text="{Binding Date, StringFormat='{}{0:dd/MM/yyyy}'}"
+                                    <Label Text="{Binding Date, StringFormat='{}{0:dd/MM/yyyy}'}"
                                    TextColor="Blue"
                                    Margin="4"></Label>
-                                <Label Text="{Binding Location}"
+                                    <Label Text="{Binding Location}"
                                    TextColor="Blue"
                                    Margin="4"></Label>
-                                <Label Text="{Binding ObservedSpecies}"
+                                    <Label Text="{Binding ObservedSpecies}"
                                    TextColor="Blue"
                                    Margin="4"></Label>
-                                <Label Text="{Binding DiveSpotModel.Name}"
+                                    <Label Text="{Binding DiveSpotModel.Name}"
                                    TextColor="Blue"
                                    Margin="4"></Label>
-                            </StackLayout>
-                            <Button Text="X"
+                                </StackLayout>
+                                <Button Text="X"
                                     Margin="10"
                                     Grid.Column="1"
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type vm:TripViewModel}}, Path=DeleteCommand}"
                                     CommandParameter="{Binding .}">
-                            </Button>
-                        </Grid>
-                        
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </VerticalStackLayout>
+                                </Button>
+                            </Grid>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

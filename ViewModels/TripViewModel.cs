@@ -12,11 +12,13 @@ namespace MyMauiApp.ViewModels
         private TripModel trip = new();
 
         [ObservableProperty]
+        private TripModel tripDetails = new();
+
+        [ObservableProperty]
         private ObservableCollection<TripModel> trips = new();
 
         public TripViewModel(TripRepository tripRepository) : base(tripRepository)
 		{	
-			AddTestDataCommand = new RelayCommand(Repository.SeedData);
 			GetList().GetAwaiter();
 		}
 
@@ -34,6 +36,13 @@ namespace MyMauiApp.ViewModels
 			await GetList();
 			Trip = new();
 		}
+
+		[RelayCommand]
+		private async Task UpdateTripDetails()
+		{
+            await Repository.Update(TripDetails);
+            await GetList();
+        }
 
         [RelayCommand]
         private async Task GetList() => Trips = new ObservableCollection<TripModel>(await Repository.GetList());

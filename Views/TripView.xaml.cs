@@ -27,7 +27,7 @@ public partial class TripView : ContentPage
     {
         if(e.Item is not null)
         {
-            TripViewModel.Trip = e.Item as TripModel;
+            TripViewModel.TripDetails = e.Item as TripModel;
             TripViewDetails detailPage = new() { BindingContext = TripViewModel };
             await Navigation.PushAsync(detailPage);
         }    
